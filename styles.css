@@ -82,9 +82,8 @@ span img {
 }
 
 .register {
-  color: white;
-  background-color: hsl(0, 0%, 8%);
-  border: none;
+  color: hsl(0, 0%, 41%);
+  border: 1px solid hsl(0, 0%, 8%);
   padding: 10px 20px;
   display: inline-block;
 }
@@ -95,6 +94,7 @@ span img {
 
 .register:hover {
   background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 98%);
 }
 
 .hamburger {
@@ -214,6 +214,10 @@ span img {
   .overflow.active {
     display: block;
   }
+
+  .main-left br {
+    display: none;
+  }
 }
 
 /* Main styles */
@@ -226,14 +230,14 @@ main {
 }
 
 .main-wrapper {
-  margin-left: 2rem; /* Small left margin to offset and center visually */
+  margin-left: 4rem; /* Small left margin to offset and center visually */
   width: 100%;
   max-width: 1100px; /* Match main's max-width */
 }
 
 .main-container {
   display: grid;
-  gap: 0; /* Remove default gap to control spacing manually */
+  gap: 2rem; /* Remove default gap to control spacing manually */
   grid-template-columns: 1fr 1fr;
   position: relative; /* For positioning decorative shapes */
   max-width: 100%; /* Ensure container fits screen */
