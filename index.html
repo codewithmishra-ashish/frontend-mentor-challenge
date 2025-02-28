@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Navbar with Expandable Sidebar</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="shortcut icon"
+      href="images/favicon-32x32.png"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header>
@@ -104,17 +110,6 @@
       </div>
     </main>
 
-    <script>
-      function toggleMenu() {
-        const sidebar = document.getElementById("sidebar");
-        const overflow = document.getElementById("overflow");
-        sidebar.classList.toggle("active");
-        overflow.classList.toggle("active");
-      }
-
-      function toggleDropdown(element) {
-        element.classList.toggle("active");
-      }
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
