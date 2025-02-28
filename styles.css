@@ -194,43 +194,117 @@ span img {
   }
 }
 
-.container {
+/* Main styles */
+main {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  max-width: 1200px;
-  margin: 3rem auto;
-  padding: 2rem;
-  gap: 2rem;
+  justify-content: center;
+  height: calc(100vh - 80px);
 }
-
-.text-content {
+.main-container {
+  display: grid;
+  max-width: 1100px;
+  gap: 5rem;
+  grid-template-columns: 1fr 1fr;
+}
+.main-left {
   display: flex;
-  justify-content: space-evenly;
   flex-direction: column;
-  margin-bottom: 20px;
+  justify-content: space-evenly;
 }
-
-.text-content h1 {
-  font-size: larger;
+.main-heading {
+  font-size: 4rem;
 }
-.image-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.container p {
+.main-content {
   font-size: 18px;
-  color: hsl(0, 0%, 41%);
+  line-height: 1.8;
+  color: var(--Medium-Gray);
 }
-/* 🔹 Mobile: Stack image on top */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column; /* Stack content vertically */
-    text-align: center;
+.logoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 800px) {
+  .nav-container {
+    padding-inline: 1rem;
   }
-  .text-content br {
+  .mobile-menu-btn {
+    display: flex;
+    cursor: pointer;
+    z-index: 999;
+  }
+  .mobile-menu {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 70%;
+    background-color: var(--Almost-White);
+    padding: 5rem 2rem;
+  }
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+  }
+  .mobile-links li {
+    display: flex;
+    color: var(--Medium-Gray);
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .mobile-links li p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .mobile-sub {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem;
+  }
+  .overflow {
+    background-color: black;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    opacity: 0.7;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-right {
+    display: none;
+  }
+  main {
+    align-items: flex-start;
+  }
+  .main-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .main-left {
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  .main-heading {
+    font-size: 2.2rem;
+  }
+  .main-heading br {
+    display: none;
+  }
+  .logoes {
+    width: 100%;
+    padding-inline: 1rem;
+    flex-wrap: wrap;
   }
 }
