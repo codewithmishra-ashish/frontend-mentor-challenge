@@ -4,12 +4,436 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Navbar with Expandable Sidebar</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="shortcut icon"
-      href="images/favicon-32x32.png"
-      type="image/x-icon"
-    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap");
+
+      body {
+        font-family: "Epilogue", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: hsl(0, 0%, 98%);
+        position: relative;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background: white;
+        border-bottom: 1px solid hsl(0, 0%, 41%);
+        gap: 20px; /* Space between logo and menu */
+        position: relative;
+        z-index: 1001; /* Default z-index for header */
+      }
+
+      .logo img {
+        width: 120px;
+      }
+
+      .menu {
+        display: flex;
+        gap: 20px;
+      }
+
+      .menu-item {
+        position: relative;
+        cursor: pointer;
+        color: hsl(0, 0%, 41%);
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .menu-item:hover {
+        color: hsl(0, 0%, 8%);
+      }
+
+      .menu-item.expandable:hover .dropdown {
+        display: block; /* Show dropdown on hover in desktop */
+        position: absolute; /* Position it below the menu item */
+        background-color: white; /* Match background */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+        min-width: 150px; /* Ensure it has a width */
+      }
+
+      .dropdown {
+        display: none;
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      .dropdown li {
+        padding: 8px 0;
+        cursor: pointer;
+        color: hsl(0, 0%, 41%);
+      }
+
+      .dropdown li:hover {
+        color: hsl(0, 0%, 8%);
+      }
+
+      .dropdown li img {
+        margin-right: 10px;
+      }
+
+      span img {
+        margin-left: 5px;
+      }
+
+      .nav-right a {
+        text-decoration: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+      }
+
+      .login {
+        color: hsl(0, 0%, 41%);
+      }
+
+      .register {
+        color: white;
+        background-color: hsl(0, 0%, 8%);
+        border: none;
+        padding: 10px 20px;
+        display: inline-block;
+      }
+
+      .nav-right {
+        margin-left: auto;
+      }
+
+      .register:hover {
+        background-color: hsl(0, 0%, 20%);
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+      }
+
+      .hamburger img {
+        width: 25px;
+        height: 25px;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: hsl(0, 0%, 98%);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000; /* Default z-index below header */
+      }
+
+      .sidebar.active {
+        right: 0;
+        z-index: 1002; /* Raise z-index above header when active */
+      }
+
+      .close-btn {
+        align-self: flex-end;
+        cursor: pointer;
+        font-size: 24px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: hsl(0, 0%, 41%);
+        padding: 10px 0;
+        display: block;
+        font-size: 16px;
+      }
+
+      .sidebar .auth-buttons {
+        margin-top: 20px;
+      }
+
+      .sidebar .auth-buttons .register {
+        text-align: center;
+        display: block;
+        padding: 10px;
+        background-color: hsl(0, 0%, 8%);
+        color: white;
+        border-radius: 8px;
+      }
+
+      .sidebar .auth-buttons .register:hover {
+        background-color: hsl(0, 0%, 20%);
+      }
+
+      .sidebar .auth-buttons .login {
+        text-align: center;
+        display: block;
+        padding: 10px;
+        border-radius: 8px;
+        color: hsl(0, 0%, 41%);
+      }
+
+      .sidebar .menu-item.expandable .dropdown {
+        position: static; /* Override absolute positioning in sidebar */
+        box-shadow: none; /* Remove shadow in sidebar */
+      }
+
+      /* Expandable dropdown */
+      .expandable .dropdown {
+        display: none;
+      }
+
+      .expandable.active .dropdown {
+        display: block;
+      }
+
+      .expandable span {
+        float: right;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 768px) {
+        .menu,
+        .nav-right {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+          margin-left: auto;
+        }
+
+        /* Overlay for darkening background */
+        .overflow {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background-color: black;
+          opacity: 0.7;
+          z-index: 1000; /* Below sidebar and header, above main content */
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        .overflow.active {
+          display: block;
+        }
+      }
+
+      /* Main styles */
+      main {
+        padding: 20px 20px; /* Reduced padding-top from 50px to 20px */
+        max-width: 1100px;
+        margin: 0 auto; /* Center the main container horizontally */
+        position: relative;
+        z-index: 1; /* Below sidebar and overlay */
+      }
+
+      .main-wrapper {
+        margin-left: 2rem; /* Small left margin to offset and center visually */
+        width: 100%;
+        max-width: 1100px; /* Match main's max-width */
+      }
+
+      .main-container {
+        display: grid;
+        gap: 0; /* Remove default gap to control spacing manually */
+        grid-template-columns: 1fr 1fr;
+        position: relative; /* For positioning decorative shapes */
+        max-width: 100%; /* Ensure container fits screen */
+      }
+
+      .main-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-right: 1rem; /* Add small gap between left and right */
+      }
+
+      .main-heading {
+        font-size: 4rem;
+      }
+
+      .main-content {
+        font-size: 18px;
+        line-height: 1.8;
+        color: hsl(0, 0%, 41%);
+      }
+
+      .logoes {
+        display: flex;
+        flex-wrap: nowrap; /* Force logos to stay in a single line */
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; /* Ensure the container uses full available width */
+      }
+
+      .logoes img {
+        max-height: 30px; /* Set a maximum height for scaling */
+        width: auto; /* Allow width to adjust proportionally */
+        object-fit: contain; /* Maintain aspect ratio while scaling down */
+        margin-right: 1rem; /* Small gap between logos */
+      }
+
+      .logoes img:last-child {
+        margin-right: 0; /* Remove margin from the last logo */
+      }
+
+      .primary-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: hsl(0, 0%, 8%); /* Dark background */
+        color: white;
+        text-decoration: none;
+        border-radius: 25px; /* Rounded border */
+        width: fit-content;
+      }
+
+      .primary-btn:hover {
+        background-color: hsl(0, 0%, 20%);
+      }
+
+      @media screen and (max-width: 800px) {
+        .nav-container {
+          padding-inline: 1rem;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+          cursor: pointer;
+          z-index: 999;
+        }
+
+        .mobile-menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          width: 70%;
+          background-color: hsl(0, 0%, 98%);
+          padding: 5rem 2rem;
+        }
+
+        .mobile-links {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          list-style: none;
+        }
+
+        .mobile-links li {
+          display: flex;
+          color: hsl(0, 0%, 41%);
+          flex-direction: column;
+          cursor: pointer;
+        }
+
+        .mobile-links li p {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .mobile-sub {
+          display: none;
+          flex-direction: column;
+          gap: 1rem;
+          margin: 1rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-right {
+          display: none;
+        }
+
+        main {
+          margin-left: 1rem; /* Reduced margin on mobile for better fit */
+          align-items: flex-start;
+        }
+
+        .main-wrapper {
+          margin-left: 1rem; /* Adjust wrapper margin for mobile */
+        }
+
+        .main-container {
+          display: flex;
+          flex-direction: column-reverse;
+          padding-top: 20px; /* Space below navbar */
+        }
+
+        .main-left {
+          align-items: center;
+          text-align: center;
+          gap: 2rem;
+          margin-right: 0; /* Remove horizontal gap on mobile */
+        }
+
+        .main-heading {
+          font-size: 2.2rem;
+        }
+
+        .main-heading br {
+          display: none;
+        }
+
+        .logoes {
+          justify-content: center; /* Center logos on mobile */
+        }
+
+        .logoes img {
+          max-height: 20px; /* Smaller max-height on mobile for better fit */
+          margin-right: 0.5rem; /* Reduced gap between logos on mobile */
+        }
+
+        .logoes img:last-child {
+          margin-right: 0; /* Remove margin from the last logo */
+        }
+      }
+
+      /* Image-specific styles */
+      .main-right {
+        position: relative;
+      }
+
+      .main-right img {
+        width: 60%; /* Reduced image size to 60% to fit better with text */
+        max-width: 400px; /* Set a maximum width to prevent it from being too large */
+        height: auto;
+        object-fit: cover;
+      }
+
+      .decorative-shapes {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0.5;
+      }
+
+      .decorative-shapes img {
+        width: 300px;
+        height: auto;
+      }
+
+      @media screen and (max-width: 768px) {
+        .decorative-shapes {
+          display: none; /* Hide decorative shapes on mobile */
+        }
+
+        .main-right img {
+          width: 100%; /* Full width on mobile */
+          max-width: none; /* Remove max-width on mobile for full fit */
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -110,6 +534,17 @@
       </div>
     </main>
 
-    <script src="app.js"></script>
+    <script>
+      function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        const overflow = document.getElementById("overflow");
+        sidebar.classList.toggle("active");
+        overflow.classList.toggle("active");
+      }
+
+      function toggleDropdown(element) {
+        element.classList.toggle("active");
+      }
+    </script>
   </body>
 </html>
