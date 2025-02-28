@@ -28,7 +28,9 @@ Users should be able to:
 
 ### Screenshot
 
-![Screenshot](./screenshot.jpg)
+![Mobile View](./design/mobile-design.jpg)
+
+![Desktop View](./design/desktop-design.jpg)
 
 ### Links
 
@@ -62,19 +64,22 @@ While working on this project, I gained a deeper understanding of responsive nav
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I plan to focus on the following areas in future projects:
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- Enhancing JavaScript interactivity with event delegation for better scalability.
+- Exploring CSS animations to improve the sidebar slide-in effect.
+- Deepening my understanding of accessibility (e.g., ARIA labels for dropdowns).
 
 ### Useful resources
 
-- [Add live site URL here]((https://www.w3schools.com/)) - This helped me a lot for getting to basics of frontend and js too. 
+- [W3Schools](https://www.w3schools.com/) - Helped me with the basics of HTML, CSS, and JavaScript.
+- [CSS-Tricks](https://css-tricks.com/) - Provided insights into Flexbox and Grid layouts.
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) - Useful for understanding CSS positioning and JavaScript DOM manipulation.
 
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Ashish Mishra](https://mishrashish.com.np/)
+- Linkedin - [@ashish-mishra-54419231a](https://www.linkedin.com/in/ashish-mishra-54419231a/)
 
 
