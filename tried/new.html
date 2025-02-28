@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Frontend Mentor | Intro section with dropdown navigation</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      :root {
+        --white: hsl(0, 0%, 98%);
+        --gray: hsl(0, 0%, 41%);
+        --black: hsl(0, 0%, 8%);
+      }
+
+      body {
+        font-family: "Epilogue", sans-serif;
+        font-weight: 500;
+        font-size: 1.8rem;
+        line-height: 1.3;
+        color: var(--gray);
+
+        background-color: var(--white);
+
+        overflow-x: hidden;
+      }
+
+      h1 {
+        font-size: 6.4rem;
+        color: var(--black);
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 2.6rem;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .grid {
+        display: grid;
+      }
+
+      .grid--2cols {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        max-width: 140rem;
+        padding: 2rem;
+        margin: 3.8rem auto 0 auto;
+        justify-items: center;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .btn {
+        background-color: inherit;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: pointer;
+        padding: 1.2rem 2.4rem;
+        border-radius: 14px;
+        transition: all 100ms;
+      }
+
+      /* SECTION */
+
+      .col-text {
+        max-width: 43rem;
+        align-self: end;
+      }
+
+      .col-text p {
+        margin-bottom: 2.6rem;
+      }
+
+      .brands {
+        justify-content: space-between;
+      }
+
+      .btn--learn {
+        padding: 1.5rem 2.8rem;
+        margin-bottom: 6.8rem;
+        transition: all 150ms;
+
+        color: var(--white);
+        background-color: var(--black);
+        border: solid var(--black) 1px;
+      }
+
+      .btn--learn:hover {
+        color: var(--black);
+        background-color: var(--white);
+      }
+
+      .col-img {
+        max-width: 36rem;
+      }
+
+      .hero-img {
+        width: 100%;
+      }
+
+      /* HEADER */
+
+      .header {
+        padding: 2.2rem 4.8rem;
+        gap: 5.8rem;
+        z-index: 999;
+      }
+
+      .nav {
+        font-size: 1.5rem;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav__list {
+        gap: 3.6rem;
+      }
+
+      .nav__list li {
+        cursor: pointer;
+      }
+
+      /* POPUP MENU */
+      .menu--name {
+        align-self: start;
+        gap: 1.2rem;
+      }
+
+      .menu {
+        gap: 0.6rem;
+        position: relative;
+        z-index: 999;
+      }
+
+      .hidden .popMenu {
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .popMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        width: max-content;
+        position: absolute;
+        top: 35px;
+        background-color: var(--white);
+        padding: 1.8rem;
+        border-radius: 14px;
+        box-shadow: 0px 0px 34px -4px rgba(0, 0, 0, 0.17);
+      }
+
+      .popMenu li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .features .popMenu {
+        right: 0px;
+      }
+
+      /* SIDE MENU */
+      .side-menu-btn {
+        width: 70px;
+        height: 40px;
+        display: none;
+        z-index: 999;
+      }
+
+      /* NAV BUTTONS */
+      .btn--login,
+      .btn--register {
+        color: var(--gray);
+        margin-bottom: 0.2rem;
+      }
+
+      .btn--register {
+        border: solid var(--gray) 1px;
+      }
+
+      .btn--login:hover,
+      .btn--register:hover,
+      li:hover {
+        color: var(--black);
+        border-color: var(--black);
+        transition: all 150ms;
+      }
+
+      /* MEDIA QUERIES */
+
+      @media (max-width: 56.25em) {
+        html {
+          font-size: 54%;
+        }
+      }
+
+      @media (max-width: 47.5em) {
+        body {
+          line-height: 1.5;
+        }
+
+        h1 {
+          font-size: 5.2rem;
+        }
+
+        .section {
+          margin: 0;
+          padding: 0 0 8rem 0;
+          gap: 3.4rem;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+        }
+
+        .header {
+          height: 9.8rem;
+          padding: 2.2rem;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .nav__list {
+          align-items: start;
+        }
+
+        .btns--row {
+          align-self: center;
+          width: 100%;
+        }
+
+        .nav__list,
+        .btns--row {
+          flex-direction: column;
+        }
+
+        .col-text {
+          max-width: 90%;
+          text-align: center;
+        }
+
+        .btn--register {
+          width: 100%;
+          max-width: 30rem;
+        }
+
+        .col-img {
+          order: -1;
+          max-width: 48rem;
+          max-height: 100%;
+        }
+
+        .brands img {
+          transform: scale(90%);
+        }
+
+        .nav {
+          /* CLOSE BY DEFAULT */
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 65%;
+          height: 100vh;
+          padding: 12rem 3.6rem 3.6rem 3.6rem;
+
+          box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+
+          flex-direction: column;
+          align-items: start;
+          justify-content: unset;
+          background-color: #fff;
+
+          transform: translateX(100%);
+          opacity: 0;
+          pointer-events: none;
+          visibility: hidden;
+          z-index: 1;
+          transition: all 0.3s ease-in;
+        }
+
+        .side-open .nav {
+          opacity: 1;
+          pointer-events: auto;
+          visibility: visible;
+          transform: translateX(0);
+        }
+
+        .menu {
+          position: unset;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .popMenu {
+          gap: 0.6rem;
+          position: initial;
+          background-color: #fff;
+          padding: 1.8rem;
+          border-radius: 14px;
+          box-shadow: none;
+          gap: 1.6rem;
+        }
+
+        .hidden .popMenu {
+          display: none;
+        }
+
+        .side-menu-btn {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="row header">
+      <img src="images/logo.svg" />
+
+      <nav class="row nav">
+        <ul class="row nav__list">
+          <li class="hidden features row menu">
+            <div class="row menu--name">
+              Features
+              <img
+                src="images/icon-arrow-down.svg"
+                data-srcup="images/icon-arrow-up.svg"
+                data-srcdown="images/icon-arrow-down.svg"
+              />
+            </div>
+
+            <ul class="popMenu">
+              <li><img src="images/icon-todo.svg" /> Todo List</li>
+              <li><img src="images/icon-calendar.svg" /> Calendar</li>
+              <li><img src="images/icon-reminders.svg" /> Reminders</li>
+              <li><img src="images/icon-planning.svg" /> Planning</li>
+            </ul>
+          </li>
+          <li class="hidden company row menu">
+            <div class="row menu--name">
+              Company
+              <img
+                src="images/icon-arrow-down.svg"
+                data-srcup="images/icon-arrow-up.svg"
+                data-srcdown="images/icon-arrow-down.svg"
+              />
+            </div>
+            <ul class="popMenu">
+              <li>History</li>
+              <li>Our Team</li>
+              <li>Blog</li>
+            </ul>
+          </li>
+          <li>Careers</li>
+          <li>About</li>
+        </ul>
+
+        <div class="btns--row row">
+          <button class="btn btn--login">Login</button>
+          <button class="btn btn--register">Register</button>
+        </div>
+      </nav>
+      <button
+        class="btn side-menu-btn"
+        data-open="http://127.0.0.1:5500/images/icon-menu.svg"
+        data-close="http://127.0.0.1:5500/images/icon-close-menu.svg"
+      >
+        <img src="images/icon-menu.svg" />
+      </button>
+    </header>
+    <section class="section grid grid--2cols">
+      <div class="col-text grid-col">
+        <h1 class="h1">Make remote work</h1>
+        <p>
+          Get your team in sync, no matter your location. Streamline processes,
+          create team rituals, and watch productivity soar.
+        </p>
+        <button class="btn btn--learn">Learn more</button>
+
+        <div class="row brands">
+          <img src="images/client-databiz.svg" />
+          <img src="images/client-audiophile.svg" />
+          <img src="images/client-meet.svg" />
+          <img src="images/client-maker.svg" />
+        </div>
+      </div>
+      <div class="col-img grid-col">
+        <picture>
+          <source
+            srcset="images/image-hero-desktop.png"
+            media="(min-width: 47.5em)"
+          />
+          <img class="hero-img" srcset="images/image-hero-mobile.png" />
+        </picture>
+      </div>
+    </section>
+
+    <script>
+      "use strict";
+
+      const navList = document.querySelector(`.nav__list`);
+      const sideMenuBtn = document.querySelector(".side-menu-btn");
+
+      let widthMatch = window.matchMedia("(max-width: 47.5em)");
+      let closeTimer;
+
+      const closePopMenu = function (menu) {
+        menu.classList.add("hidden");
+        menu.querySelector("img").src =
+          menu.querySelector("img").dataset.srcdown;
+      };
+
+      const openPopMenu = function (menu) {
+        clearInterval(closeTimer);
+
+        menu.classList.remove("hidden");
+
+        menu.querySelector("img").src = menu
+          .closest(".menu")
+          .querySelector("img").dataset.srcup;
+      };
+
+      const mouseOverHandler = function (e) {
+        console.log(`got here`);
+        if (
+          !e.target.parentElement.classList.contains("menu") &&
+          !e.target.classList.contains("popMenu")
+        )
+          return;
+        const currMenu = e.target.closest(".menu");
+        document
+          .querySelectorAll(".menu")
+          .forEach((menu) => closePopMenu(menu));
+        openPopMenu(currMenu);
+      };
+
+      const mouseLeaveHandler = function (e) {
+        closeTimer = setTimeout(function () {
+          e.target
+            .querySelectorAll(`.menu`)
+            .forEach((menu) => closePopMenu(menu));
+        }, 1000);
+      };
+
+      const clickHandler = function (e) {
+        if (
+          !e.target.parentElement.classList.contains("menu") &&
+          !e.target.classList.contains("popMenu")
+        )
+          return;
+        const currMenu = e.target.closest(".menu");
+        currMenu.classList.toggle("hidden");
+      };
+
+      widthMatch.addEventListener("change", function (mm) {
+        if (mm.matches) {
+          navList.removeEventListener("mouseover", mouseOverHandler);
+          navList.removeEventListener("mouseleave", mouseLeaveHandler);
+
+          navList.addEventListener("click", clickHandler);
+        } else {
+          navList.removeEventListener("click", clickHandler);
+
+          navList.addEventListener("mouseover", mouseOverHandler);
+          navList.addEventListener("mouseleave", mouseLeaveHandler);
+        }
+      });
+
+      sideMenuBtn.addEventListener("click", function (e) {
+        e.target.closest(".header").classList.toggle("side-open");
+        const rect = sideMenuBtn.getBoundingClientRect();
+        console.log(rect.top, rect.right, rect.bottom, rect.left);
+        const imgBtn = sideMenuBtn.querySelector("img");
+
+        imgBtn.src =
+          imgBtn.src === sideMenuBtn.dataset.open
+            ? sideMenuBtn.dataset.close
+            : sideMenuBtn.dataset.open;
+        sideMenuBtn.classList.toggle("fixed");
+      });
+
+      /* FIRST EVENT ASSIGNATION */
+      if (window.innerWidth <= 760) {
+        navList.addEventListener("click", clickHandler);
+      } else {
+        navList.addEventListener("mouseover", mouseOverHandler);
+        navList.addEventListener("mouseleave", mouseLeaveHandler);
+      }
+    </script>
+  </body>
+</html>

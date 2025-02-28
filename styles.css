@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap");
+
+body {
+  font-family: "Epilogue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: hsl(0, 0%, 98%);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid hsl(0, 0%, 41%);
+  gap: 20px; /* Space between logo and menu */
+}
+
+.logo img {
+  width: 120px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-item {
+  position: relative;
+  cursor: pointer;
+  color: hsl(0, 0%, 41%);
+  font-size: 16px;
+  padding: 10px;
+}
+
+.menu-item:hover {
+  color: hsl(0, 0%, 8%);
+}
+
+.menu-item.expandable:hover .dropdown {
+  display: block; /* Show dropdown on hover in desktop */
+  position: absolute; /* Position it below the menu item */
+  background-color: white; /* Match background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  min-width: 150px; /* Ensure it has a width */
+}
+
+.dropdown {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+}
+
+.dropdown li {
+  padding: 8px 0;
+  cursor: pointer;
+  color: hsl(0, 0%, 41%);
+}
+
+.dropdown li:hover {
+  color: hsl(0, 0%, 8%);
+}
+
+.dropdown li img {
+  margin-right: 10px;
+}
+
+span img {
+  margin-left: 5px;
+}
+
+.nav-right a {
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+}
+
+.login {
+  color: hsl(0, 0%, 41%);
+}
+
+.register {
+  color: white;
+  background-color: hsl(0, 0%, 8%);
+  border: none;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.nav-right {
+  margin-left: auto;
+}
+
+.register:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger img {
+  width: 25px;
+  height: 25px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100vh;
+  background-color: hsl(0, 0%, 98%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.close-btn {
+  align-self: flex-end;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: hsl(0, 0%, 41%);
+  padding: 10px 0;
+  display: block;
+  font-size: 16px;
+}
+
+.sidebar .auth-buttons {
+  margin-top: 20px;
+}
+
+.sidebar .auth-buttons .register {
+  text-align: center;
+  display: block;
+  padding: 10px;
+  background-color: hsl(0, 0%, 8%);
+  color: white;
+  border-radius: 8px;
+}
+
+.sidebar .auth-buttons .register:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.sidebar .auth-buttons .login {
+  text-align: center;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  color: hsl(0, 0%, 41%);
+}
+
+.sidebar .menu-item.expandable .dropdown {
+  position: static; /* Override absolute positioning in sidebar */
+  box-shadow: none; /* Remove shadow in sidebar */
+}
+
+/* Expandable dropdown */
+.expandable .dropdown {
+  display: none;
+}
+
+.expandable.active .dropdown {
+  display: block;
+}
+
+.expandable span {
+  float: right;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .menu,
+  .nav-right {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.text-content {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.text-content h1 {
+  font-size: larger;
+}
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container p {
+  font-size: 18px;
+  color: hsl(0, 0%, 41%);
+}
+/* 🔹 Mobile: Stack image on top */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack content vertically */
+    text-align: center;
+  }
+  .text-content br {
+    display: none;
+  }
+}

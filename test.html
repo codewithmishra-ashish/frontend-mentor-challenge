@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      /* Navigation Bar */
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 30px;
+        background: white;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-icon {
+        font-size: 24px;
+        cursor: pointer;
+        display: block;
+      }
+
+      /* Sidebar Menu */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        height: 100%;
+        background: white;
+        box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: 0.3s ease-in-out;
+      }
+
+      .sidebar.active {
+        right: 0;
+      }
+
+      .close-btn {
+        align-self: flex-end;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        padding: 10px 0px;
+        display: block;
+      }
+
+      /* Dropdown Styles */
+      .dropdown {
+        cursor: pointer;
+      }
+
+      .dropdown-content {
+        display: none;
+        padding-left: 20px;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+      }
+
+      /* Sidebar Menu Items - Add gap between image and text */
+      .sidebar .dropdown-content a {
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Vertically center the image and text */
+        padding: 10px 0; /* Optional: add padding around each item */
+      }
+
+      .sidebar .dropdown-content a img {
+        margin-right: 10px; /* Adjust the gap between the image and the text */
+      }
+
+      /* Login & Register Buttons */
+      .sidebar .auth-buttons {
+        margin-top: 20px;
+      }
+
+      .sidebar .auth-buttons button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border: 1px solid black;
+        background: transparent;
+      }
+
+      .sidebar .auth-buttons button:hover {
+        background: black;
+        color: white;
+      }
+
+      /* Desktop View */
+      @media (min-width: 900px) {
+        .menu-icon {
+          display: none;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 20px;
+        }
+
+        .sidebar {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="nav-left">
+        <a href="#" class="brand">Snap</a>
+      </div>
+      <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+    </nav>
+
+    <!-- Sidebar Modal -->
+    <div class="sidebar" id="sidebar">
+      <div class="close-btn" onclick="toggleSidebar()">✖</div>
+
+      <div class="dropdown">
+        <a href="#" onclick="toggleDropdown(this)"
+          >Features
+          <img class="arrow_down" src="images/icon-arrow-down.svg" alt="" /><img
+            class="arrow_up"
+            src="images/icon-arrow-up.svg"
+            alt=""
+        /></a>
+        <div class="dropdown-content">
+          <a href="#"><img src="images/icon-todo.svg" alt="" />Todo List</a>
+          <a href="#"><img src="images/icon-calendar.svg" alt="" />Calendar</a>
+          <a href="#"
+            ><img src="images/icon-reminders.svg" alt="" />Reminders</a
+          >
+          <a href="#"><img src="images/icon-planning.svg" alt="" />Planning</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#" onclick="toggleDropdown(this)">Company ▼</a>
+        <div class="dropdown-content">
+          <a href="#">History</a>
+          <a href="#">Our Team</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+
+      <a href="#">Careers</a>
+      <a href="#">About</a>
+
+      <div class="auth-buttons">
+        <button>Login</button>
+        <button>Register</button>
+      </div>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("active");
+      }
+
+      function toggleDropdown(element) {
+        element.parentElement.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

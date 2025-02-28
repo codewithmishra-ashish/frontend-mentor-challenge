@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar with Expandable Sidebar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo"><img src="images/logo.svg" alt="Logo" /></div>
+      <nav class="menu">
+        <div class="menu-item expandable">
+          Features <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+          <ul class="dropdown">
+            <li><img src="images/icon-todo.svg" alt="" />Todo List</li>
+            <li><img src="images/icon-calendar.svg" alt="" />Calendar</li>
+            <li><img src="images/icon-reminders.svg" alt="" />Reminders</li>
+            <li><img src="images/icon-planning.svg" alt="" />Planning</li>
+          </ul>
+        </div>
+        <div class="menu-item expandable">
+          Company <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+          <ul class="dropdown">
+            <li>History</li>
+            <li>Our Team</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+        <div class="menu-item">Careers</div>
+        <div class="menu-item">About</div>
+      </nav>
+      <div class="nav-right">
+        <a href="#" class="login">Login</a>
+        <a href="#" class="register">Register</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <img src="images/icon-menu.svg" alt="Menu" />
+      </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+      <div class="close-btn" onclick="toggleMenu()">✖</div>
+
+      <div class="menu-item expandable" onclick="toggleDropdown(this)">
+        Features <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+        <ul class="dropdown">
+          <li><img src="images/icon-todo.svg" alt="" />Todo List</li>
+          <li><img src="images/icon-calendar.svg" alt="" />Calendar</li>
+          <li><img src="images/icon-reminders.svg" alt="" />Reminders</li>
+          <li><img src="images/icon-planning.svg" alt="" />Planning</li>
+        </ul>
+      </div>
+
+      <div class="menu-item expandable" onclick="toggleDropdown(this)">
+        Company <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+        <ul class="dropdown">
+          <li>History</li>
+          <li>Our Team</li>
+          <li>Blog</li>
+        </ul>
+      </div>
+
+      <a href="#">Careers</a>
+      <a href="#">About</a>
+
+      <div class="auth-buttons">
+        <a href="#" class="login">Login</a>
+        <a href="#" class="register">Register</a>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
