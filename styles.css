@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: hsl(0, 0%, 98%);
+  position: relative;
 }
 
 header {
@@ -12,8 +13,9 @@ header {
   align-items: center;
   padding: 1rem;
   background: white;
-  border-bottom: 1px solid hsl(0, 0%, 41%);
   gap: 20px; /* Space between logo and menu */
+  position: relative;
+  z-index: 1001; /* Default z-index for header */
 }
 
 .logo img {
@@ -118,10 +120,12 @@ span img {
   flex-direction: column;
   transition: right 0.3s ease-in-out;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Default z-index below header */
 }
 
 .sidebar.active {
   right: 0;
+  z-index: 1002; /* Raise z-index above header when active */
 }
 
 .close-btn {
@@ -192,48 +196,97 @@ span img {
     display: block;
     margin-left: auto;
   }
+
+  /* Overlay for darkening background */
+  .overflow {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 1000; /* Below sidebar and header, above main content */
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .overflow.active {
+    display: block;
+  }
 }
 
 /* Main styles */
 main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 80px);
+  padding: 20px 20px; /* Reduced padding-top from 50px to 20px */
+  max-width: 1100px;
+  margin: 0 auto; /* Center the main container horizontally */
+  position: relative;
+  z-index: 1; /* Below sidebar and overlay */
 }
+
+.main-wrapper {
+  margin-left: 4rem; /* Small left margin to offset and center visually */
+  width: 100%;
+  max-width: 1100px; /* Match main's max-width */
+}
+
 .main-container {
   display: grid;
-  max-width: 1100px;
-  gap: 5rem;
+  gap: 0; /* Remove default gap to control spacing manually */
   grid-template-columns: 1fr 1fr;
+  position: relative; /* For positioning decorative shapes */
+  max-width: 100%; /* Ensure container fits screen */
 }
+
 .main-left {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-right: 1rem; /* Add small gap between left and right */
 }
+
 .main-heading {
   font-size: 4rem;
 }
+
 .main-content {
   font-size: 18px;
   line-height: 1.8;
-  color: var(--Medium-Gray);
+  color: hsl(0, 0%, 41%);
 }
+
 .logoes {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.primary-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: hsl(0, 0%, 8%); /* Dark background */
+  color: white;
+  text-decoration: none;
+  border-radius: 25px; /* Rounded border */
+  width: fit-content;
+}
+
+.primary-btn:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
 @media screen and (max-width: 800px) {
   .nav-container {
     padding-inline: 1rem;
   }
+
   .mobile-menu-btn {
     display: flex;
     cursor: pointer;
     z-index: 999;
   }
+
   .mobile-menu {
     display: none;
     flex-direction: column;
@@ -242,69 +295,118 @@ main {
     top: 0;
     bottom: 0;
     width: 70%;
-    background-color: var(--Almost-White);
+    background-color: hsl(0, 0%, 98%);
     padding: 5rem 2rem;
   }
+
   .mobile-links {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     list-style: none;
   }
+
   .mobile-links li {
     display: flex;
-    color: var(--Medium-Gray);
+    color: hsl(0, 0%, 41%);
     flex-direction: column;
     cursor: pointer;
   }
+
   .mobile-links li p {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
+
   .mobile-sub {
     display: none;
     flex-direction: column;
     gap: 1rem;
     margin: 1rem;
   }
-  .overflow {
-    background-color: black;
-    display: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 30%;
-    opacity: 0.7;
-  }
+
   .nav-links {
     display: none;
   }
+
   .nav-right {
     display: none;
   }
+
   main {
+    margin-left: 1rem; /* Reduced margin on mobile for better fit */
     align-items: flex-start;
   }
+
+  .main-wrapper {
+    margin-left: 0rem; /* Adjust wrapper margin for mobile */
+  }
+
   .main-container {
     display: flex;
     flex-direction: column-reverse;
+    padding-top: 20px; /* Space below navbar */
   }
+
   .main-left {
     align-items: center;
     text-align: center;
     gap: 2rem;
+    margin-right: 0; /* Remove horizontal gap on mobile */
   }
+
   .main-heading {
     font-size: 2.2rem;
   }
+
   .main-heading br {
     display: none;
   }
+
+  .main-content {
+    margin-top: 0;
+    line-height: 1.5rem;
+  }
+
   .logoes {
     width: 100%;
     padding-inline: 1rem;
     flex-wrap: wrap;
+  }
+}
+
+/* Image-specific styles */
+.main-right {
+  position: relative;
+}
+
+.main-right img {
+  width: 60%; /* Reduced image size to 60% to fit better with text */
+  max-width: 400px; /* Set a maximum width to prevent it from being too large */
+  height: auto;
+  object-fit: cover;
+}
+
+.decorative-shapes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+}
+
+.decorative-shapes img {
+  width: 300px;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .decorative-shapes {
+    display: none; /* Hide decorative shapes on mobile */
+  }
+
+  .main-right img {
+    width: 100%; /* Full width on mobile */
+    max-width: none; /* Remove max-width on mobile for full fit */
   }
 }
