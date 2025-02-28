@@ -39,12 +39,32 @@ header {
   color: hsl(0, 0%, 8%);
 }
 
+.up-arrow {
+  display: none;
+}
+
+.features-expandable:hover span .down-arrow {
+  display: none; /* Hide down arrow on hover for Features */
+}
+
+.features-expandable:hover span .up-arrow {
+  display: inline; /* Show up arrow on hover for Features */
+}
+
+.company-expandable:hover span .down-arrow {
+  display: none; /* Hide down arrow on hover for Company */
+}
+
+.company-expandable:hover span .up-arrow {
+  display: inline; /* Show up arrow on hover for Company */
+}
+
 .menu-item.expandable:hover .dropdown {
-  display: block; /* Show dropdown on hover in desktop */
-  position: absolute; /* Position it below the menu item */
-  background-color: white; /* Match background */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
-  min-width: 150px; /* Ensure it has a width */
+  display: block;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
 }
 
 .dropdown {
@@ -69,6 +89,7 @@ header {
 
 span img {
   margin-left: 5px;
+  vertical-align: middle; /* Ensure proper alignment */
 }
 
 .nav-right a {
@@ -77,19 +98,23 @@ span img {
   border-radius: 8px;
 }
 
+.nav-right {
+  margin-left: auto;
+}
+
 .login {
   color: hsl(0, 0%, 41%);
 }
 
+.login:hover {
+  color: hsl(0, 0%, 8%);
+}
+
 .register {
-  color: hsl(0, 0%, 41%);
+  color: hsl(0, 0%, 8%);
   border: 1px solid hsl(0, 0%, 8%);
   padding: 10px 20px;
   display: inline-block;
-}
-
-.nav-right {
-  margin-left: auto;
 }
 
 .register:hover {
@@ -149,14 +174,15 @@ span img {
 .sidebar .auth-buttons .register {
   text-align: center;
   display: block;
-  padding: 10px;
-  background-color: hsl(0, 0%, 8%);
-  color: white;
-  border-radius: 8px;
+  padding: 10px 20px; /* Match desktop padding */
+  color: hsl(0, 0%, 8%); /* Match desktop text color */
+  border: 1px solid hsl(0, 0%, 8%); /* Match desktop border */
+  border-radius: 8px; /* Match desktop border radius */
 }
 
 .sidebar .auth-buttons .register:hover {
-  background-color: hsl(0, 0%, 20%);
+  background-color: hsl(0, 0%, 20%); /* Match desktop hover background */
+  color: hsl(0, 0%, 98%); /* Match desktop hover text color */
 }
 
 .sidebar .auth-buttons .login {
@@ -177,8 +203,36 @@ span img {
   display: none;
 }
 
-.expandable.active .dropdown {
+.features-expandable .dropdown {
+  display: none;
+}
+
+.company-expandable .dropdown {
+  display: none;
+}
+
+.features-expandable.active .dropdown {
   display: block;
+}
+
+.company-expandable.active .dropdown {
+  display: block;
+}
+
+.features-expandable:hover span .down-arrow {
+  display: none; /* Hide down arrow on hover for Features in sidebar */
+}
+
+.features-expandable:hover span .up-arrow {
+  display: inline; /* Show up arrow on hover for Features in sidebar */
+}
+
+.company-expandable:hover span .down-arrow {
+  display: none; /* Hide down arrow on hover for Company in sidebar */
+}
+
+.company-expandable:hover span .up-arrow {
+  display: inline; /* Show up arrow on hover for Company in sidebar */
 }
 
 .expandable span {
@@ -386,8 +440,8 @@ main {
   }
 
   .logoes img {
-    max-height: 15px;
-    margin-right: 0.5rem;
+    max-height: 15px; /* Smaller max-height on mobile for better fit */
+    margin-right: 0.5rem; /* Reduced gap between logos on mobile */
   }
 
   .logoes img:last-child {

@@ -15,8 +15,12 @@
     <header>
       <div class="logo"><img src="images/logo.svg" alt="Logo" /></div>
       <nav class="menu">
-        <div class="menu-item expandable">
-          Features <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+        <div class="menu-item expandable features-expandable">
+          Features
+          <span>
+            <img class="down-arrow" src="images/icon-arrow-down.svg" alt="" />
+            <img class="up-arrow" src="images/icon-arrow-up.svg" alt="" />
+          </span>
           <ul class="dropdown">
             <li><img src="images/icon-todo.svg" alt="" />Todo List</li>
             <li><img src="images/icon-calendar.svg" alt="" />Calendar</li>
@@ -24,8 +28,12 @@
             <li><img src="images/icon-planning.svg" alt="" />Planning</li>
           </ul>
         </div>
-        <div class="menu-item expandable">
-          Company <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+        <div class="menu-item expandable company-expandable">
+          Company
+          <span>
+            <img class="down-arrow" src="images/icon-arrow-down.svg" alt="" />
+            <img class="up-arrow" src="images/icon-arrow-up.svg" alt="" />
+          </span>
           <ul class="dropdown">
             <li>History</li>
             <li>Our Team</li>
@@ -47,8 +55,15 @@
     <div class="sidebar" id="sidebar">
       <div class="close-btn" onclick="toggleMenu()">✖</div>
 
-      <div class="menu-item expandable" onclick="toggleDropdown(this)">
-        Features <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+      <div
+        class="menu-item expandable features-expandable"
+        onclick="toggleFeaturesDropdown(this)"
+      >
+        Features
+        <span>
+          <img class="down-arrow" src="images/icon-arrow-down.svg" alt="" />
+          <img class="up-arrow" src="images/icon-arrow-up.svg" alt="" />
+        </span>
         <ul class="dropdown">
           <li><img src="images/icon-todo.svg" alt="" />Todo List</li>
           <li><img src="images/icon-calendar.svg" alt="" />Calendar</li>
@@ -57,8 +72,15 @@
         </ul>
       </div>
 
-      <div class="menu-item expandable" onclick="toggleDropdown(this)">
-        Company <span><img src="images/icon-arrow-down.svg" alt="" /></span>
+      <div
+        class="menu-item expandable company-expandable"
+        onclick="toggleCompanyDropdown(this)"
+      >
+        Company
+        <span>
+          <img class="down-arrow" src="images/icon-arrow-down.svg" alt="" />
+          <img class="up-arrow" src="images/icon-arrow-up.svg" alt="" />
+        </span>
         <ul class="dropdown">
           <li>History</li>
           <li>Our Team</li>
