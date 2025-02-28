@@ -226,7 +226,7 @@ main {
 }
 
 .main-wrapper {
-  margin-left: 4rem; /* Small left margin to offset and center visually */
+  margin-left: 2rem; /* Small left margin to offset and center visually */
   width: 100%;
   max-width: 1100px; /* Match main's max-width */
 }
@@ -258,8 +258,21 @@ main {
 
 .logoes {
   display: flex;
+  flex-wrap: nowrap; /* Force logos to stay in a single line */
   align-items: center;
   justify-content: space-between;
+  width: 100%; /* Ensure the container uses full available width */
+}
+
+.logoes img {
+  max-height: 30px; /* Set a maximum height for scaling */
+  width: auto; /* Allow width to adjust proportionally */
+  object-fit: contain; /* Maintain aspect ratio while scaling down */
+  margin-right: 1rem; /* Small gap between logos */
+}
+
+.logoes img:last-child {
+  margin-right: 0; /* Remove margin from the last logo */
 }
 
 .primary-btn {
@@ -335,7 +348,7 @@ main {
   }
 
   main {
-    margin-left: 1rem; /* Reduced margin on mobile for better fit */
+    margin-left: 0rem; /* Reduced margin on mobile for better fit */
     align-items: flex-start;
   }
 
@@ -364,15 +377,21 @@ main {
     display: none;
   }
 
-  .main-content {
-    margin-top: 0;
-    line-height: 1.5rem;
+  .logoes {
+    justify-content: center; /* Center logos on mobile */
   }
 
-  .logoes {
-    width: 100%;
-    padding-inline: 1rem;
-    flex-wrap: wrap;
+  .logoes img {
+    max-height: 15px;
+    margin-right: 0.5rem;
+  }
+
+  .logoes img:last-child {
+    margin-right: 0; /* Remove margin from the last logo */
+  }
+
+  .logoes img:first-child {
+    margin-left: 0;
   }
 }
 
@@ -382,29 +401,13 @@ main {
 }
 
 .main-right img {
-  width: 60%; /* Reduced image size to 60% to fit better with text */
-  max-width: 400px; /* Set a maximum width to prevent it from being too large */
+  width: 60%;
+  max-width: 400px;
   height: auto;
   object-fit: cover;
 }
 
-.decorative-shapes {
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0.5;
-}
-
-.decorative-shapes img {
-  width: 300px;
-  height: auto;
-}
-
 @media screen and (max-width: 768px) {
-  .decorative-shapes {
-    display: none; /* Hide decorative shapes on mobile */
-  }
-
   .main-right img {
     width: 100%; /* Full width on mobile */
     max-width: none; /* Remove max-width on mobile for full fit */
