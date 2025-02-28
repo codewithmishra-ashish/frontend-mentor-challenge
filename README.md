@@ -1,6 +1,6 @@
 # Frontend Mentor - Intro section with dropdown navigation solution
 
-This is a solution to the [Intro section with dropdown navigation challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-section-with-dropdown-navigation-ryaPetHE5). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Intro section with dropdown navigation challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-section-with-dropdown-navigation-ryaPetHE5). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -16,8 +16,6 @@ This is a solution to the [Intro section with dropdown navigation challenge on F
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -30,14 +28,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-
+![Screenshot](./screenshot.jpg)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/codewithmishra-ashish/frontend-mentor-challenge)
-- Live Site URL: [Add live site URL here](https://codewithmishra-ashish.github.io/frontend-mentor-challenge/)
+- Solution URL: [https://github.com/codewithmishra-ashish/frontend-mentor-challenge](https://github.com/codewithmishra-ashish/frontend-mentor-challenge)
+- Live Site URL: [https://codewithmishra-ashish.github.io/frontend-mentor-challenge/](https://codewithmishra-ashish.github.io/frontend-mentor-challenge/)
 
 ## My process
 
@@ -48,27 +44,20 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
+- JavaScript (for dropdown toggle functionality)
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+While working on this project, I gained a deeper understanding of responsive navigation design. Key learnings include:
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
+- **Hover and Toggle States**: I learned how to implement hover effects for dropdown arrows using CSS and toggle dropdowns with JavaScript, ensuring independent behavior for "Features" and "Company" using specific classes.
+  ```css
+  .features-expandable:hover span .down-arrow {
+    display: none;
+  }
+  .features-expandable:hover span .up-arrow {
+    display: inline;
+  }
 
 
 ### Continued development
