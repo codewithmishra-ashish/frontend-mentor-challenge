@@ -12,6 +12,7 @@
         margin: 0;
         padding: 0;
         background-color: hsl(0, 0%, 98%);
+        position: relative;
       }
 
       header {
@@ -19,8 +20,9 @@
         align-items: center;
         padding: 1rem;
         background: white;
-        border-bottom: 1px solid hsl(0, 0%, 41%);
         gap: 20px; /* Space between logo and menu */
+        position: relative;
+        z-index: 1001; /* Default z-index for header */
       }
 
       .logo img {
@@ -125,10 +127,12 @@
         flex-direction: column;
         transition: right 0.3s ease-in-out;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000; /* Default z-index below header */
       }
 
       .sidebar.active {
         right: 0;
+        z-index: 1002; /* Raise z-index above header when active */
       }
 
       .close-btn {
@@ -199,26 +203,54 @@
           display: block;
           margin-left: auto;
         }
+
+        /* Overlay for darkening background */
+        .overflow {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background-color: black;
+          opacity: 0.7;
+          z-index: 1000; /* Below sidebar and header, above main content */
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        .overflow.active {
+          display: block;
+        }
       }
 
       /* Main styles */
       main {
-        padding: 50px 20px;
+        padding: 20px 20px; /* Reduced padding-top from 50px to 20px */
         max-width: 1100px;
-        margin: 0 auto;
+        margin: 0 auto; /* Center the main container horizontally */
+        position: relative;
+        z-index: 1; /* Below sidebar and overlay */
+      }
+
+      .main-wrapper {
+        margin-left: 4rem; /* Small left margin to offset and center visually */
+        width: 100%;
+        max-width: 1100px; /* Match main's max-width */
       }
 
       .main-container {
         display: grid;
-        gap: 2rem; /* Reduced gap to bring text closer */
+        gap: 0; /* Remove default gap to control spacing manually */
         grid-template-columns: 1fr 1fr;
         position: relative; /* For positioning decorative shapes */
+        max-width: 100%; /* Ensure container fits screen */
       }
 
       .main-left {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+        margin-right: 1rem; /* Add small gap between left and right */
       }
 
       .main-heading {
@@ -301,17 +333,6 @@
           margin: 1rem;
         }
 
-        .overflow {
-          background-color: black;
-          display: none;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          width: 30%;
-          opacity: 0.7;
-        }
-
         .nav-links {
           display: none;
         }
@@ -321,7 +342,12 @@
         }
 
         main {
+          margin-left: 1rem; /* Reduced margin on mobile for better fit */
           align-items: flex-start;
+        }
+
+        .main-wrapper {
+          margin-left: 0rem; /* Adjust wrapper margin for mobile */
         }
 
         .main-container {
@@ -334,6 +360,7 @@
           align-items: center;
           text-align: center;
           gap: 2rem;
+          margin-right: 0; /* Remove horizontal gap on mobile */
         }
 
         .main-heading {
@@ -342,6 +369,11 @@
 
         .main-heading br {
           display: none;
+        }
+
+        .main-content {
+          margin-top: 0;
+          line-height: 1.5rem;
         }
 
         .logoes {
@@ -357,7 +389,8 @@
       }
 
       .main-right img {
-        width: 80%; /* Reduced image size to make text closer */
+        width: 60%; /* Reduced image size to 60% to fit better with text */
+        max-width: 400px; /* Set a maximum width to prevent it from being too large */
         height: auto;
         object-fit: cover;
       }
@@ -381,6 +414,7 @@
 
         .main-right img {
           width: 100%; /* Full width on mobile */
+          max-width: none; /* Remove max-width on mobile for full fit */
         }
       }
     </style>
@@ -449,40 +483,47 @@
       </div>
     </div>
 
+    <div class="overflow" id="overflow"></div>
+
     <main>
-      <div class="main-container">
-        <div class="main-left">
-          <h1 class="main-heading">
-            Make <br />
-            remote work
-          </h1>
-          <p class="main-content">
-            Get your team in sync, no matter your location. Streamline
-            processes, create team rituals, and watch productivity soar.
-          </p>
-          <div class="primary-btn">Learn more</div>
-          <div class="logoes">
-            <img src="images/client-databiz.svg" alt="brand-logo" />
-            <img src="images/client-audiophile.svg" alt="brand-logo" />
-            <img src="images/client-meet.svg" alt="brand-logo" />
-            <img src="images/client-maker.svg" alt="brand-logo" />
+      <div class="main-wrapper">
+        <div class="main-container">
+          <div class="main-left">
+            <h1 class="main-heading">
+              Make <br />
+              remote work
+            </h1>
+            <p class="main-content">
+              Get your team in sync, no matter your location. Streamline
+              processes, create team rituals, and watch productivity soar.
+            </p>
+            <div class="primary-btn">Learn more</div>
+            <div class="logoes">
+              <img src="images/client-databiz.svg" alt="brand-logo" />
+              <img src="images/client-audiophile.svg" alt="brand-logo" />
+              <img src="images/client-meet.svg" alt="brand-logo" />
+              <img src="images/client-maker.svg" alt="brand-logo" />
+            </div>
           </div>
-        </div>
-        <div class="main-right">
-          <picture>
-            <source
-              media="(max-width: 768px)"
-              srcset="images/image-hero-mobile.png"
-            />
-            <img src="images/image-hero-desktop.png" alt="Remote Work" />
-          </picture>
+          <div class="main-right">
+            <picture>
+              <source
+                media="(max-width: 768px)"
+                srcset="images/image-hero-mobile.png"
+              />
+              <img src="images/image-hero-desktop.png" alt="Remote Work" />
+            </picture>
+          </div>
         </div>
       </div>
     </main>
 
     <script>
       function toggleMenu() {
-        document.getElementById("sidebar").classList.toggle("active");
+        const sidebar = document.getElementById("sidebar");
+        const overflow = document.getElementById("overflow");
+        sidebar.classList.toggle("active");
+        overflow.classList.toggle("active");
       }
 
       function toggleDropdown(element) {
