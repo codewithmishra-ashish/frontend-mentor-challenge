@@ -390,12 +390,16 @@
         }
 
         .logoes img {
-          max-height: 20px; /* Smaller max-height on mobile for better fit */
-          margin-right: 0.5rem; /* Reduced gap between logos on mobile */
+          max-height: 15px;
+          margin-right: 0.5rem;
         }
 
         .logoes img:last-child {
           margin-right: 0; /* Remove margin from the last logo */
+        }
+
+        .logoes img:first-child {
+          margin-left: 0;
         }
       }
 
@@ -405,8 +409,8 @@
       }
 
       .main-right img {
-        width: 60%; /* Reduced image size to 60% to fit better with text */
-        max-width: 400px; /* Set a maximum width to prevent it from being too large */
+        width: 60%;
+        max-width: 400px;
         height: auto;
         object-fit: cover;
       }
